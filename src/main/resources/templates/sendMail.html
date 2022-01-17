@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1>Send Mail</h1>
+	<h1>SMTP Test</h1>
     <form action="#" th:action="@{/send}" th:object="${mail}" method="post">
         <p>
         <label for="port">Port:</label>
@@ -29,7 +29,7 @@
     	<p>User: <input type="text" th:field="*{user}" /></p>
         <p>Password: <input type="text" th:field="*{password}" /></p>
     	<p>To: <input type="text" th:field="*{to}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        <p><input type="submit" value="Send" /> <input type="reset" value="Reset" /></p>
     </form>
 </body>
 </html>
