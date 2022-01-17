@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Send Mail</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Send Mail</h1>
+    <form action="#" th:action="@{/send}" th:object="${mail}" method="post">
+    	<p>Port: <input type="text" th:field="*{port}" /></p>
+        <p>Protocol: <input type="text" th:field="*{protocol}" /></p>
+    	<p>STARTTLS: <input type="checkbox" th:field="*{starttls}" /></p>
+        <p>Auth: <input type="checkbox" th:field="*{auth}" /></p>
+    	<p>User: <input type="text" th:field="*{user}" /></p>
+        <p>Password: <input type="text" th:field="*{password}" /></p>
+    	<p>To: <input type="text" th:field="*{to}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
