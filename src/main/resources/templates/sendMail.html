@@ -7,10 +7,25 @@
 <body>
 	<h1>Send Mail</h1>
     <form action="#" th:action="@{/send}" th:object="${mail}" method="post">
-    	<p>Port: <input type="text" th:field="*{port}" /></p>
-        <p>Protocol: <input type="text" th:field="*{protocol}" /></p>
+        <p>
+        <label for="port">Port:</label>
+        <select th:field="*{port}">
+            <option value=0></option>
+            <option value=25>25</option>
+            <option value=465>465</option>
+            <option value=587>587</option>
+            <option value=2525>2525</option>
+        </select>
+        </p>
+        <p>
+        <label for="protocol">Protocol:</label>
+        <select th:field="*{protocol}">
+            <option value="smtp">SMTP</option>
+            <option value="smtps">SMTPS</option>
+        </select>
+        </p>
     	<p>STARTTLS: <input type="checkbox" th:field="*{starttls}" /></p>
-        <p>Auth: <input type="checkbox" th:field="*{auth}" /></p>
+        <p>Auth: <input type="checkbox" th:field="*{auth}"/></p>
     	<p>User: <input type="text" th:field="*{user}" /></p>
         <p>Password: <input type="text" th:field="*{password}" /></p>
     	<p>To: <input type="text" th:field="*{to}" /></p>
