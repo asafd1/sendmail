@@ -1,7 +1,6 @@
 package com.asaf.sendmail;
 
 import java.util.Properties;
-
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -23,34 +22,36 @@ public class SendMailController {
     @RequestMapping("/send")
 	public String send(@ModelAttribute Mail mail, Model model) {
         model.addAttribute("mail", mail);
-		getJavaMailSender(mail.getPort(), mail.getProtocol(), mail.getStarttls(), mail.getAuth(), mail.getUser(), mail.getPassword()).send(simpleMessage(mail.getTo()));
+		getJavaMailSender(mail.getHost(), mail.getPort(), mail.getProtocol(), mail.getStarttls(), mail.getAuth(), mail.getUser(), mail.getPassword()).send(simpleMessage(mail.getFrom(), mail.getTo()));
         return "result";
 	}
 
-    private JavaMailSender getJavaMailSender(int port, String protocol, boolean starttls, boolean auth, String user, String password) 
+    private JavaMailSender getJavaMailSender(String host, int port, String protocol, boolean starttls, boolean auth, String user, String password) 
     {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.sendgrid.net");
+        // mailSender.setHost("smtp.sendgrid.net");
+        mailSender.setHost(host);
         mailSender.setPort(port);
           
         mailSender.setUsername(user);
-        mailSender.setPassword(password);
+        mailSender.setPassword(password);//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
           
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", protocol);
         props.put("mail.smtp.auth", Boolean.toString(auth).toLowerCase());
+        System.out.println("========================> " + Boolean.toString(starttls).toLowerCase());
         props.put("mail.smtp.starttls.enable", Boolean.toString(starttls).toLowerCase());
         props.put("mail.debug", "true");
           
         return mailSender;
     }
 
-    private SimpleMailMessage simpleMessage(String to)
+    private SimpleMailMessage simpleMessage(String from, String to)
     {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
-        message.setFrom("adavid@pingidentity.com");
-        message.setSubject("Mail from sendgrid");
+        message.setFrom(from);
+        message.setSubject("Pingidentity test");
         message.setText("It's party time");
         return message;
     }

@@ -7,6 +7,7 @@
 <body>
 	<h1>SMTP Test</h1>
     <form action="#" th:action="@{/send}" th:object="${mail}" method="post">
+    	<p>Host: <input type="text" th:field="*{host}" /></p>
         <p>
         <label for="port">Port:</label>
         <select th:field="*{port}">
@@ -28,6 +29,7 @@
         <p>Auth: <input type="checkbox" th:field="*{auth}"/></p>
     	<p>User: <input type="text" th:field="*{user}" /></p>
         <p>Password: <input type="text" th:field="*{password}" /></p>
+    	<p>From: <input type="text" th:field="*{from}" /></p>
     	<p>To: <input type="text" th:field="*{to}" /></p>
         <p><input type="submit" value="Send" /> <input type="reset" value="Reset" /></p>
     </form>
