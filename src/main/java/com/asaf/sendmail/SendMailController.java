@@ -53,6 +53,7 @@ public class SendMailController {
         SimpleMailMessage message = new SimpleMailMessage();
         List<String> recipients = Arrays.asList(to.split(","));
         message.setTo(recipients.toArray(new String[0]));
+        System.out.println("---------------------> " + message.getTo());
         message.setFrom(from);
         message.setSubject("Pingidentity test");
         message.setText("It's party time");
