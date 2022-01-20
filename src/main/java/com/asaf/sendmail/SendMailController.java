@@ -52,6 +52,8 @@ public class SendMailController {
     {
         SimpleMailMessage message = new SimpleMailMessage();
         List<String> recipients = Arrays.asList(to.split(","));
+        recipients.forEach(System.out::println);
+
         message.setTo(recipients.toArray(new String[0]));
         System.out.println("---------------------> " + message.getTo());
         message.setFrom(from);
