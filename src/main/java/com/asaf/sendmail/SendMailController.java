@@ -34,7 +34,7 @@ public class SendMailController {
         mailSender.setPort(port);
           
         mailSender.setUsername(user);
-        mailSender.setPassword(password);//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
+        mailSender.setPassword(password);
           
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", protocol);
