@@ -1,5 +1,7 @@
 package com.asaf.sendmail;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -49,7 +51,8 @@ public class SendMailController {
     private SimpleMailMessage simpleMessage(String from, String to)
     {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
+        List<String> recipients = Arrays.asList(to.split(","));
+        message.setTo(recipients.toArray(new String[0]));
         message.setFrom(from);
         message.setSubject("Pingidentity test");
         message.setText("It's party time");
