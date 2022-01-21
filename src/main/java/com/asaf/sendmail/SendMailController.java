@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SendMailController {
@@ -19,6 +20,12 @@ public class SendMailController {
         model.addAttribute("mail", new Mail());
 
 		return "sendMail";
+	}
+
+    @GetMapping("/sendtest")
+	public String sendTest(@RequestParam String host, @RequestParam String from, @RequestParam String to) {
+		getJavaMailSender(host, 25, "smtp", true, true, "U", "P").send(simpleMessage(from, to));
+        return "result";
 	}
 
     @RequestMapping("/send")
